@@ -17,13 +17,13 @@ jobs:
       RUNNER_DEBUG: '1'
       ACTIONS_RUNNER_DEBUG: 'true'
     steps:
-      - name: Set up CA for Node
-        run: |
-          echo '${{ secrets.KGAL_AZURE_DEV_CA_CERT_PEM }}' > "$RUNNER_TEMP/ca.pem"
-          echo "NODE_EXTRA_CA_CERTS=$RUNNER_TEMP/ca.pem" >> "$GITHUB_ENV"
-        env:
-          # So the secret is available for writing
-          KGAL_AZURE_DEV_CA_CERT_PEM: ${{ secrets.KGAL_AZURE_DEV_CA_CERT_PEM }}
+    #   - name: Set up CA for Node
+    #     run: |
+    #       echo '${{ secrets.KGAL_AZURE_DEV_CA_CERT_PEM }}' > "$RUNNER_TEMP/ca.pem"
+    #       echo "NODE_EXTRA_CA_CERTS=$RUNNER_TEMP/ca.pem" >> "$GITHUB_ENV"
+    #     env:
+    #       # So the secret is available for writing
+    #       KGAL_AZURE_DEV_CA_CERT_PEM: 
       - name: Retrieve Akeyless Secret (GCP auth)
         id: akeyless
         uses: akeyless-community/akeyless-github-action@v1.1.4
@@ -36,6 +36,8 @@ jobs:
           static-secrets: |
             - name: "/path/to/test1"
               output-name: "MY_SECRET"
+        env:
+          NODE_EXTRA_CA_CERTS: ${{ secrets.KGAL_AZURE_DEV_CA_CERT_PEM }}
 
       - name: Use secret
         run: |
