@@ -19,7 +19,7 @@ jobs:
         uses: akeyless-community/akeyless-github-action@v1.1.4
         with:
           api-url: https://api.akeyless.io
-          access-id: ${{ inputs.access-id || secrets.AKEYLESS_ACCESS_ID }}
+          access-id: ${{ inputs.access-id || secrets.GCP_AKEYLESS_ACCESS_ID }}
           access-type: gcp
           gcp-audience: "akeyless.io"
           static-secrets: |
