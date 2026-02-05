@@ -18,7 +18,7 @@ jobs:
         id: akeyless
         uses: akeyless-community/akeyless-github-action@43ecc17479747f00b3590e167f6b17cc3e9534e5
         with:
-          api-url: https://api.akeyless.io
+          api-url: https://kgal-azure.dev/api/v2
           access-id: ${{ inputs.access-id || secrets.GCP_AKEYLESS_ACCESS_ID }}
           access-type: gcp
           gcp-audience: "akeyless.io"
