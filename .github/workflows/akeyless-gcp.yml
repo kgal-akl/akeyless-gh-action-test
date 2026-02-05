@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Retrieve Akeyless Secret (GCP auth)
         id: akeyless
-        uses: akeyless-community/akeyless-github-action@43ecc17479747f00b3590e167f6b17cc3e9534e5
+        uses: akeyless-community/akeyless-github-action@v1.1.4
         with:
           api-url: https://kgal-azure.dev/api/v2
           ca-certificate: ${{ secrets.KGAL_AZURE_DEV_CA_CERT_PEM }}
