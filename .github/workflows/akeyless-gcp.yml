@@ -1,0 +1,31 @@
+name: Akeyless GCP (self-hosted)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      access-id:
+        description: 'The Akeyless GCP auth method Access ID'
+        required: true
+        type: string
+
+jobs:
+  akeyless-secrets:
+    runs-on: [self-hosted]
+    steps:
+      - name: Retrieve Akeyless Secret (GCP auth)
+        id: akeyless
+        uses: akeyless-community/akeyless-github-action@v1.1.4
+        with:
+          api-url: https://api.akeyless.io
+          access-id: ${{ inputs.access-id || secrets.AKEYLESS_ACCESS_ID }}
+          access-type: gcp
+          gcp-audience: "akeyless.io"
+          static-secrets: |
+            - name: "/path/to/test1"
+              output-name: "MY_SECRET"
+
+      - name: Use secret
+        run: |
+          echo "Secret (masked) is set: ${{ steps.akeyless.outputs.MY_SECRET }}"
